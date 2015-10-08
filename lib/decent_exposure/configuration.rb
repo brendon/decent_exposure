@@ -12,7 +12,7 @@ module DecentExposure
       @options ||= {}
     end
 
-    def method_missing(key,value)
+    def method_missing(key, value)
       self.options[key] = value
     end
   end
