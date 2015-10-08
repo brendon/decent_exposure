@@ -1,10 +1,8 @@
-require 'active_support/inflector'
-require 'active_support/core_ext/string'
-
 module DecentExposure
   class ConstantResolver
     attr_reader :context, :constant_name
-    def initialize(constant_name, context=Object)
+
+    def initialize(constant_name, context = Object)
       @context, @constant_name = context, constant_name.classify
     end
 

@@ -1,3 +1,4 @@
+require 'active_support/all'
 require 'decent_exposure/expose'
 require 'decent_exposure/error'
 

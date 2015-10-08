@@ -1,5 +1,4 @@
 require 'decent_exposure/strategy'
-require 'active_support/core_ext/module/delegation'
 
 module DecentExposure
   class ActiveRecordStrategy < Strategy
