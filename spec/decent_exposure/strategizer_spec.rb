@@ -1,4 +1,4 @@
-require 'decent_exposure/strategizer'
+require 'spec_helper'
 
 describe DecentExposure::Strategizer do
   describe "#strategy" do

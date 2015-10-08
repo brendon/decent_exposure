@@ -1,4 +1,4 @@
-require 'decent_exposure/inflector'
+require 'spec_helper'
 
 class Car; end
 class Fox; end

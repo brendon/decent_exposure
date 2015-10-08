@@ -1,5 +1,4 @@
-require 'decent_exposure/expose'
-require 'action_controller'
+require 'spec_helper'
 
 class MyController < ActionController::Base
   extend DecentExposure::Expose

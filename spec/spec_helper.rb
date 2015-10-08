@@ -1,4 +1,5 @@
 require 'decent_exposure'
+require 'action_controller'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

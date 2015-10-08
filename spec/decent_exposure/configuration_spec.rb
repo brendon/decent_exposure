@@ -1,4 +1,4 @@
-require 'decent_exposure/configuration'
+require 'spec_helper'
 
 describe DecentExposure::Configuration do
   context "with a configuration block" do

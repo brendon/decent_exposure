@@ -1,4 +1,4 @@
-require 'decent_exposure/active_record_strategy'
+require 'spec_helper'
 
 describe DecentExposure::ActiveRecordStrategy do
   describe "#resource" do

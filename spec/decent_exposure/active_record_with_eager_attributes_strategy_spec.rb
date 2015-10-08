@@ -1,4 +1,4 @@
-require 'decent_exposure/active_record_with_eager_attributes_strategy'
+require 'spec_helper'
 
 describe DecentExposure::ActiveRecordWithEagerAttributesStrategy do
   describe "#resource" do

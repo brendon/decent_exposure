@@ -1,5 +1,4 @@
-require 'decent_exposure/strong_parameters_strategy'
-require 'active_support/core_ext'
+require 'spec_helper'
 
 describe DecentExposure::StrongParametersStrategy do
   describe "#assign_attributes?" do

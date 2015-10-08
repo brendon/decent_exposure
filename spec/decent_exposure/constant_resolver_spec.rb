@@ -1,4 +1,4 @@
-require 'decent_exposure/constant_resolver'
+require 'spec_helper'
 
 describe DecentExposure::ConstantResolver do
   describe "#constant" do
