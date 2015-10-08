@@ -1,7 +1,7 @@
 module DecentExposure
   class Configuration
     def initialize(&block)
-      instance_exec(&block) if block_given?
+      instance_eval(&block) if block_given?
     end
 
     def merge(other)
