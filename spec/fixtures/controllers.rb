@@ -28,6 +28,7 @@ class Albatross
   def self.scoped
     [new, new]
   end
+
   def self.all
     scoped
   end
@@ -36,21 +37,27 @@ end
 class Organism
   extend ActiveModel::Naming
   attr_accessor :species
+
   def initialize(attrs={})
     self.attributes = attrs
   end
+
   def self.find_by_itis_id(itis_id)
     new
   end
+
   def self.scoped
     [new, new]
   end
+
   def self.all
     scoped
   end
+
   def self.find(id)
     new(:species => 'Striginae')
   end
+
   def attributes=(attributes)
     attributes.each { |k,v| send("#{k}=", v) }
   end

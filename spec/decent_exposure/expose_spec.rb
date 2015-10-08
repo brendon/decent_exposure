@@ -38,6 +38,7 @@ describe DecentExposure::Expose do
   describe ".expose!" do
     let(:controller) { MyController.new }
     let(:block) { lambda { "I'm a block" } }
+
     it "delegates to .expose" do
       expect(MyController).to receive(:expose).once
       MyController.expose!(:worm)
