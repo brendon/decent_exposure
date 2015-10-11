@@ -27,7 +27,7 @@ describe DecentExposure::ActiveRecordStrategy do
       context "with a findable resource" do
         context "when the request has an id param" do
           let(:params) { { :id => "7" } }
-          it "finds the on the model using that id" do
+          it "finds record using that id" do
             expect(model).to receive(:find).with("7").and_return(instance)
             is_expected.to eq(instance)
           end
@@ -35,7 +35,7 @@ describe DecentExposure::ActiveRecordStrategy do
 
         context "when a request that has no id param, but has model_id param" do
           let(:params) { { "model_id" => "7" } }
-          it "finds the on the model using model_id" do
+          it "finds the record using model_id" do
             expect(model).to receive(:find).with("7").and_return(instance)
             is_expected.to eq(instance)
           end
