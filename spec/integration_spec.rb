@@ -1,4 +1,4 @@
-require 'fixtures/controllers'
+require 'support/controllers'
 require 'rspec/rails'
 
 describe BirdController, :type => :controller do
