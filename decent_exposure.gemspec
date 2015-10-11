@@ -1,17 +1,12 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
+require File.expand_path("../lib/decent_exposure/version", __FILE__)
 
-require 'decent_exposure/version'
-
-Gem::Specification.new do |s|
-  s.name        = 'decent_exposure'
-  s.version     = DecentExposure::VERSION
-  s.authors     = ["Stephen Caudill", "Jon Larkowski", "Joshua Davey"]
-  s.email       = 'scaudill@gmail.com'
-  s.homepage    = 'http://github.com/voxdolo/decent_exposure'
-  s.license     = 'WTFPL'
-
-  s.description = %q{
+Gem::Specification.new do |spec|
+  spec.name        = "decent_exposure"
+  spec.version     = DecentExposure::VERSION
+  spec.authors     = ["Stephen Caudill", "Jon Larkowski", "Joshua Davey"]
+  spec.email       = "scaudill@gmail.com"
+  spec.summary     = "A helper for creating declarative interfaces in controllers"
+  spec.description = %q{
     DecentExposure helps you program to an interface, rather than an
     implementation in your Rails controllers.  The fact of the matter is that
     sharing state via instance variables in controllers promotes close coupling
@@ -19,18 +14,16 @@ Gem::Specification.new do |s|
     interface to the state that controllers contain and thereby decreasing
     coupling and improving your testability and overall design.
   }
+  spec.homepage    = "http://github.com/voxdolo/decent_exposure"
+  spec.license     = "WTFPL"
+  spec.files       = `git ls-files -z`.split("\x0")
+  spec.test_files  = spec.files.grep(/\Aspec\//)
+  spec.require_path   = "lib"
 
-  s.summary = 'A helper for creating declarative interfaces in controllers'
+  spec.required_ruby_version = "~> 2.0"
 
-  s.required_rubygems_version = '>= 1.3.6'
+  spec.add_dependency "railties",      "~> 4.0"
+  spec.add_dependency "activesupport", "~> 4.0"
 
-  s.files = Dir.glob("lib/**/*.rb") + %w(README.md)
-
-  s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = ["lib"]
-
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'actionpack', '>= 3.1.0'
-  s.add_development_dependency 'activesupport', '>= 3.1.0'
+  spec.rdoc_options = ["--charset=UTF-8"]
 end
