@@ -13,17 +13,18 @@ module Rails
     def routes
       return @routes if defined?(@routes)
       @routes = ActionDispatch::Routing::RouteSet.new
-      @routes.draw do
-        get '/bird/new' => "bird#new"
-        get '/birds' => "bird#index"
-        get '/bird/(:id)' => "bird#show"
-        get '/duck/(:id)' => "duck#show"
-        get '/mallard/(:id)' => "mallard#show"
-        get '/taxonomies/(:id)' => "taxonomies#show"
-        get '/namespace/model/:id' => "namespace/model#show"
-        get '/strong_parameters/:id' => "strong_parameters#show"
+      @routes.tap do |routes|
+        routes.draw do
+          get '/bird/new'              => "bird#new"
+          get '/birds'                 => "bird#index"
+          get '/bird/(:id)'            => "bird#show"
+          get '/duck/(:id)'            => "duck#show"
+          get '/mallard/(:id)'         => "mallard#show"
+          get '/taxonomies/(:id)'      => "taxonomies#show"
+          get '/namespace/model/:id'   => "namespace/model#show"
+          get '/strong_parameters/:id' => "strong_parameters#show"
+        end
       end
-      @routes
     end
   end
   def self.application
