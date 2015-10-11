@@ -5,24 +5,24 @@ module DecentExposure
   module Expose
     def self.extended(base)
       base.class_eval do
-        class_attribute :_decent_configurations
-        self._decent_configurations ||= Hash.new(Configuration.new)
+        class_attribute :decent_configurations
+        self.decent_configurations ||= Hash.new(Configuration.new)
 
-        def _resources
-          @_resources ||= {}
+        def resources
+          @resources ||= {}
         end
-        hide_action :_resources
+        hide_action :resources
 
         protected_instance_variables << "@_resources"
       end
     end
 
-    def _exposures
-      @_exposures ||= {}
+    def exposures
+      @exposures ||= {}
     end
 
-    def decent_configuration(name=:default,&block)
-      self._decent_configurations = _decent_configurations.merge(name => Configuration.new(&block))
+    def decent_configuration(name = :default, &block)
+      self.decent_configurations = decent_configurations.merge(name => Configuration.new(&block))
     end
 
     def expose!(*args, &block)
@@ -39,9 +39,9 @@ module DecentExposure
       end
 
       config = options[:config] || :default
-      options = _decent_configurations[config].merge(options)
+      options = decent_configurations[config].merge(options)
 
-      _exposures[name] = exposure = Strategizer.new(name, options, &block).strategy
+      exposures[name] = exposure = Strategizer.new(name, options, &block).strategy
 
       define_exposure_methods(name, exposure)
     end
@@ -50,14 +50,14 @@ module DecentExposure
 
     def define_exposure_methods(name, exposure)
       define_method(name) do
-        return _resources[name] if _resources.has_key?(name)
-        _resources[name] = exposure.call(self)
+        return resources[name] if resources.has_key?(name)
+        resources[name] = exposure.call(self)
       end
       helper_method name
       hide_action name
 
       define_method("#{name}=") do |value|
-        _resources[name] = value
+        resources[name] = value
       end
       hide_action "#{name}="
     end

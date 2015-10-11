@@ -26,7 +26,7 @@ describe DecentExposure::Expose do
     end
 
     it "caches the value, only loading once" do
-      expect(controller.class._exposures[:bird]).to receive(:call).once
+      expect(controller.class.exposures[:bird]).to receive(:call).once
       2.times { controller.bird }
     end
 
@@ -68,11 +68,11 @@ describe DecentExposure::Expose do
     end
 
     it "inherits from superclasses" do
-      expect(ParentContoller._decent_configurations[:default].options).to eq(NonOverridingController._decent_configurations[:default].options)
+      expect(ParentContoller.decent_configurations[:default].options).to eq(NonOverridingController.decent_configurations[:default].options)
     end
 
     it "does not override config for sibling classes" do
-      expect(OverridingController._decent_configurations[:default].options).not_to eq(NonOverridingController._decent_configurations[:default].options)
+      expect(OverridingController.decent_configurations[:default].options).not_to eq(NonOverridingController.decent_configurations[:default].options)
     end
   end
 end
