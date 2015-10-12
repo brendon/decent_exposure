@@ -14,7 +14,11 @@ module DecentExposure
     end
 
     def strategy
-      block_strategy || exposure_strategy
+      if block
+        block_strategy
+      else
+        exposure_strategy
+      end
     end
 
     private
@@ -24,7 +28,7 @@ module DecentExposure
     end
 
     def block_strategy
-      BlockStrategy.new(block, exposure_strategy) if block
+      BlockStrategy.new(block, exposure_strategy)
     end
 
     def exposure_strategy_class
