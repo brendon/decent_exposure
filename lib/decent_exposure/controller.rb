@@ -2,7 +2,7 @@ require 'decent_exposure/strategizer'
 require 'decent_exposure/configuration'
 
 module DecentExposure
-  module Expose
+  module Controller
     def self.included(base)
       base.class_eval do
         class_attribute :decent_configurations

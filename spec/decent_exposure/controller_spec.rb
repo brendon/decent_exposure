@@ -4,8 +4,8 @@ class MyController < ActionController::Base
   expose(:bird) { "Bird" }
 end
 
-describe DecentExposure::Expose do
-  describe ".expose" do
+describe DecentExposure::Controller do
+  describe "::expose" do
     let(:controller) { MyController.new }
     it "defines a getter and setter with the given name" do
       expect(controller).to respond_to(:bird)
@@ -31,7 +31,7 @@ describe DecentExposure::Expose do
     end
   end
 
-  describe ".expose!" do
+  describe "::expose!" do
     let(:controller) { MyController.new }
     let(:block) { lambda { "I'm a block" } }
 
@@ -46,9 +46,8 @@ describe DecentExposure::Expose do
     end
   end
 
-  describe ".decent_configuration" do
+  describe "::decent_configuration" do
     class ParentContoller < ActionController::Base
-      extend DecentExposure::Expose
       decent_configuration do
         finder :find
       end
