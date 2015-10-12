@@ -1,14 +1,10 @@
 require 'spec_helper'
 
 class MyController < ActionController::Base
-  extend DecentExposure::Expose
   expose(:bird) { "Bird" }
-
-  def params; end
 end
 
 describe DecentExposure::Expose do
-
   describe ".expose" do
     let(:controller) { MyController.new }
     it "defines a getter and setter with the given name" do
