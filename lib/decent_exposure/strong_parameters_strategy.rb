@@ -1,8 +1,20 @@
 require 'decent_exposure/active_record_strategy'
-require 'decent_exposure/strategies/assign_from_method'
 
 module DecentExposure
   class StrongParametersStrategy < ActiveRecordStrategy
-    include Strategies::AssignFromMethod
+    def attributes
+      return @attributes if defined?(@attributes)
+      @attributes = controller.send(options[:attributes]) if options[:attributes]
+    end
+
+    def assign_attributes?
+      singular? && (post? || put? || patch?) && attributes.present?
+    end
+
+    def resource
+      super.tap do |r|
+        r.attributes = attributes if assign_attributes?
+      end
+    end
   end
 end
