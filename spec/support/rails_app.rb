@@ -27,6 +27,7 @@ module Rails
       end
     end
   end
+
   def self.application
     @app ||= App.new
   end
@@ -34,14 +35,18 @@ end
 
 # Models
 class Parrot
-  attr_accessor :beak
   extend ActiveModel::Naming
-  def initialize(attrs={})
+
+  attr_accessor :beak
+
+  def initialize(attrs = {})
     self.attributes = attrs
   end
+
   def self.find(id)
     new if id
   end
+
   def attributes=(attributes)
     attributes.each { |k,v| send("#{k}=", v) }
   end
@@ -57,6 +62,7 @@ end
 
 class Albatross
   extend ActiveModel::Naming
+
   def self.scoped
     [new, new]
   end
@@ -70,7 +76,7 @@ class Organism
   extend ActiveModel::Naming
   attr_accessor :species
 
-  def initialize(attrs={})
+  def initialize(attrs = {})
     self.attributes = attrs
   end
 
@@ -116,7 +122,7 @@ end
 # Controllers
 class BirdController < ActionController::Base
   include Rails.application.routes.url_helpers
-  expose(:bird) { "Bird" }
+  expose(:bird)    { "Bird" }
   expose(:ostrich) { "Ostrich" }
   expose(:albatrosses)
   expose(:parrot)
