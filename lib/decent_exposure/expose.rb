@@ -33,13 +33,21 @@ module DecentExposure
         expose(*args, &block)
       end
 
+      def warning
+        Kernel.warn <<-EOS
+          [WARNING] You are exposing the `#{name}` method,
+          which overrides an existing ActionController method of the same name.
+          Consider a different exposure name
+          #{caller.first}
+        EOS
+      end
+
+      def method_already_exists_in_rails?(name)
+        ActionController::Base.instance_methods.include?(name.to_sym)
+      end
+
       def expose(name, options={}, &block)
-        if ActionController::Base.instance_methods.include?(name.to_sym)
-          Kernel.warn "[WARNING] You are exposing the `#{name}` method, " \
-            "which overrides an existing ActionController method of the same name. " \
-            "Consider a different exposure name\n" \
-            "#{caller.first}"
-        end
+        if method_already_exists_in_rails?(name) then warning end
 
         config = options[:config] || :default
         options = decent_configurations[config].merge(options)
