@@ -2,7 +2,7 @@ require 'decent_exposure/expose'
 require 'action_controller'
 
 class MyController < ActionController::Base
-  extend DecentExposure::Expose
+  include DecentExposure::Expose
   expose(:bird) { "Bird" }
 
   def params; end
@@ -52,7 +52,7 @@ describe DecentExposure::Expose do
 
   describe ".decent_configuration" do
     class ParentContoller < ActionController::Base
-      extend DecentExposure::Expose
+      include DecentExposure::Expose
       decent_configuration do
         finder :find
       end
